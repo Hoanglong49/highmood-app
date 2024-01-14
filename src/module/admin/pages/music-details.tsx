@@ -1,13 +1,15 @@
+import MediaTypeSelection from '@/components/music/MediaTypesSelection'
 import CardAlbumMusic from '@/components/music/card-album-update'
 import CardMusicImage from '@/components/music/card-music-image'
 import CardMusicSrc from '@/components/music/card-music-src'
 import CardPremiumMusic from '@/components/music/card-premium-music'
 import DeleteMusic from '@/components/music/delete-music'
 import FormMusicDetails from '@/components/music/form-music-details'
+import MediaAuthor from '@/components/music/media-author'
 import SkeletonLoading from '@/components/skeleton-loading'
 import { handleToastError } from '@/lib'
 import mediaService from '@/services/media.service'
-import { Album, Crown, Image, LayoutDashboard, PlayCircleIcon } from 'lucide-react'
+import { Album, BookPlus, Crown, Image, LayoutDashboard } from 'lucide-react'
 import { useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
 
@@ -35,7 +37,7 @@ const MusicDetails = () => {
   const music = data?.element
   if (music)
     return (
-      <div className='grid lg:grid-cols-6 gap-4 w-full h-max mb-20 my-10'>
+      <div className='grid lg:grid-cols-6 gap-4 w-full h-max mb-20 my-10 pb-10'>
         <div className='col-span-3'>
           <div>
             <div className='flex gap-2 text-lg text-sky-700 font-semibold mb-2'>
@@ -46,10 +48,6 @@ const MusicDetails = () => {
           </div>
 
           <div className='my-4'>
-            <div className='flex gap-2 text-lg text-sky-700 font-semibold mb-2'>
-              <PlayCircleIcon />
-              <h3>Music Saves</h3>
-            </div>
             <CardMusicSrc music={music} />
           </div>
 
@@ -76,10 +74,22 @@ const MusicDetails = () => {
 
           <div>
             <div className='flex gap-2 text-lg text-sky-700 font-semibold mb-4'>
+              <BookPlus />
+              <h3>Media Types</h3>
+            </div>
+            <MediaTypeSelection music={music} />
+          </div>
+
+          <div>
+            <div className='flex gap-2 text-lg text-sky-700 font-semibold mb-4'>
               <Crown />
               <h3>Premium Advanced</h3>
             </div>
             <CardPremiumMusic music={music} />
+          </div>
+
+          <div>
+            <MediaAuthor music={music} />
           </div>
         </div>
       </div>

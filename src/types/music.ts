@@ -24,6 +24,10 @@ export interface Media {
   albumId?: string
   author?: User
   album?: Album
+  duration?: number
+  listenNumber?: number
+  mediaTypeId?: string
+  mediaType?: MediaType
 }
 
 export interface MediaCreate {
@@ -33,4 +37,16 @@ export interface MediaCreate {
   desc: string
   isPremium: boolean
   albumId?: string
+  authorId?: string
+  mediaTypeId?: string
+  duration?: number
+  listenNumber?: number
+}
+
+export interface MediaType {
+  id: string
+  name: string
+  image: string
+  note: string
+  medias?: Media[]
 }
